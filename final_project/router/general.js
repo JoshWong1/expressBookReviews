@@ -21,7 +21,7 @@ public_users.post("/register", (req,res) => {
     if (username && password){
         if (!doesExist[username]){
             users.push({"username":username,"password":password})
-            res.send("User successfully registered. Now you can login.");
+            res.send("Customer successfully registered. Now you can login.");
 
         }
         else{
@@ -44,9 +44,11 @@ public_users.get('/', async function (req, res) {
 
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn', async function (req, res) {
-    await new Promise((resolve, reject) => {
+    const getisbn = new Promise((resolve, reject)=>{
         resolve(res.send(books[req.params.isbn]));
-    });    
+    });
+    getisbn.then(()=>console.log("Promise for Task 11 resolved"));
+    
  });
   
 // Get book details based on author
@@ -61,7 +63,7 @@ public_users.get('/author/:author', async function (req, res) {
     }
 
     await new Promise((resolve, reject) => {
-        resolve(res.send(booksbyAuthor));
+        resolve(res.send({"BooksbyAuthor":booksbyAuthor}));
     });    
     
 
@@ -79,7 +81,7 @@ public_users.get('/title/:title', async function (req, res) {
     }
     
     await new Promise((resolve, reject) => {
-        resolve(res.send(booksbyTitle));
+        resolve(res.send({"BooksbyTitle":booksbyTitle}));
     });  
 });
 

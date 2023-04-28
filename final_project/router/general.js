@@ -53,16 +53,16 @@ public_users.get('/isbn/:isbn', async function (req, res) {
   
 // Get book details based on author
 public_users.get('/author/:author', async function (req, res) {
-    let author = req.params.author;
-    let isbns = Object.keys(books);
-    let booksbyAuthor = [];
-    for (let i = 1; i< isbns.length+1; i++){
-        if (books[i].author == author){
-            booksbyAuthor.push(books[i])
-        } 
-    }
-
+   
     await new Promise((resolve, reject) => {
+        let author = req.params.author;
+        let isbns = Object.keys(books);
+        let booksbyAuthor = [];
+        for (let i = 1; i< isbns.length+1; i++){
+            if (books[i].author == author){
+                booksbyAuthor.push(books[i])
+            } 
+        }
         resolve(res.send({"BooksbyAuthor":booksbyAuthor}));
     });    
     
@@ -71,16 +71,16 @@ public_users.get('/author/:author', async function (req, res) {
 
 // Get all books based on title
 public_users.get('/title/:title', async function (req, res) {
-    let title = req.params.title;
-    let isbns = Object.keys(books);
-    let booksbyTitle = [];
-    for (let i = 1; i< isbns.length+1; i++){
-        if (books[i].title == title){
-            booksbyTitle.push(books[i])
-        } 
-    }
     
     await new Promise((resolve, reject) => {
+        let title = req.params.title;
+        let isbns = Object.keys(books);
+        let booksbyTitle = [];
+        for (let i = 1; i< isbns.length+1; i++){
+            if (books[i].title == title){
+                booksbyTitle.push(books[i])
+            } 
+        }
         resolve(res.send({"BooksbyTitle":booksbyTitle}));
     });  
 });
